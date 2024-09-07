@@ -1,0 +1,175 @@
+Question#1
+The incorrect output of the C program is due to integer overflow. the number exceeds the range of int. using long int will fix this issue
+
+Question#2
+#include <stdio.h>
+
+int main() {
+    int num1, num2, temp;
+
+    // Get input from the user
+    printf("Enter the first number: ");
+    scanf("%d", &num1);
+
+    printf("Enter the second number: ");
+    scanf("%d", &num2);
+
+    // Swap the values using a temporary variable
+    temp = num1;
+    num1 = num2;
+    num2 = temp;
+
+    // Display the swapped values
+    printf("Swapped numbers:\n");
+    printf("Number 1: %d\n", num1);
+    printf("Number 2: %d\n", num2);
+
+    return 0;
+}.
+
+Question#3
+#include <stdio.h>
+
+int main() {
+    float taxRate, salary, taxAmount, netSalary;
+
+    // Get input from the user
+    printf("Enter the tax rate (in percentage): ");
+    scanf("%f", &taxRate);
+
+    printf("Enter your salary: ");
+    scanf("%f", &salary);
+
+    // Calculate the tax amount
+    taxAmount = (taxRate / 100) * salary;
+
+    // Calculate the net salary
+    netSalary = salary - taxAmount;
+
+    // Display the results
+    printf("\nTax Amount: %.2f\n", taxAmount);
+    printf("Net Salary: %.2f\n", netSalary);
+
+    return 0;
+}
+
+Question#4
+#include <stdio.h>
+
+int main() {
+    float distance, fuelPriceForward, fuelPriceReturn, fuelAverage, totalFuelCost, totalFuelConsumed;
+
+    // Get input from the user
+    printf("Enter the distance between point A and point B (in kilometers): ");
+    scanf("%f", &distance);
+
+    // Ensure the distance is positive
+    while (distance <= 0) {
+        printf("Distance must be positive. Please enter a valid distance: ");
+        scanf("%f", &distance);
+    }
+
+    printf("Enter the fuel price during the forward trip (in rupees/liter): ");
+    scanf("%f", &fuelPriceForward);
+
+    printf("Enter the fuel price during the return trip (in rupees/liter): ");
+    scanf("%f", &fuelPriceReturn);
+
+    printf("Enter the car's fuel average (in kilometers/liter): ");
+    scanf("%f", &fuelAverage);
+
+    // Ensure the fuel average is positive
+    while (fuelAverage <= 0) {
+        printf("Fuel average must be positive. Please enter a valid fuel average: ");
+        scanf("%f", &fuelAverage);
+    }
+
+    // Calculate the total fuel consumed for one trip
+    float fuelConsumedOneTrip = distance / fuelAverage;
+
+    // Calculate the total fuel consumed for both trips
+    totalFuelConsumed = 2 * fuelConsumedOneTrip;
+
+    // Calculate the total fuel cost for the forward trip
+    float totalFuelCostForward = fuelConsumedOneTrip * fuelPriceForward;
+
+    // Calculate the total fuel cost for the return trip
+    float totalFuelCostReturn = fuelConsumedOneTrip * fuelPriceReturn;
+
+    // Calculate the total fuel cost for both trips
+    totalFuelCost = totalFuelCostForward + totalFuelCostReturn;
+
+    // Display the results
+    printf("\nTotal fuel consumed: %.2f liters\n", totalFuelConsumed);
+    printf("Total fuel cost: %.2f rupees\n", totalFuelCost);
+
+    return 0;
+}
+
+Question#5
+#include <stdio.h>
+
+int main() {
+    float principal, rateOfInterest, timePeriod, simpleInterest;
+
+    // Display restrictions for input values
+    printf("Restrictions:\n");
+    printf("  - Principal must be between 100 Rs. and 1,000,000 Rs.\n");
+    printf("  - Rate of interest must be between 5% and 10%.\n");
+    printf("  - Time period must be between 1 and 10 years.\n\n");
+
+    // Get input from the user
+    printf("Enter the principal amount (between 100 and 1,000,000): ");
+    scanf("%f", &principal);
+
+    // Ensure the principal is within the valid range
+    while (principal < 100 || principal > 1000000) {
+        printf("Invalid principal. Please enter a value between 100 and 1,000,000: ");
+        scanf("%f", &principal);
+    }
+
+    printf("Enter the rate of interest (between 5 and 10): ");
+    scanf("%f", &rateOfInterest);
+
+    // Ensure the rate of interest is within the valid range
+    while (rateOfInterest < 5 || rateOfInterest > 10) {
+        printf("Invalid rate of interest. Please enter a value between 5 and 10: ");
+        scanf("%f", &rateOfInterest);
+    }
+
+    printf("Enter the time period (in years, between 1 and 10): ");
+    scanf("%f", &timePeriod);
+
+    // Ensure the time period is within the valid range
+    while (timePeriod < 1 || timePeriod > 10) {
+        printf("Invalid time period. Please enter a value between 1 and 10: ");
+        scanf("%f", &timePeriod);
+    }
+
+    // Calculate simple interest
+    simpleInterest = (principal * rateOfInterest * timePeriod) / 100;
+
+    // Display the output
+    printf("\nSimple Interest: %.2f Rs.\n", simpleInterest);
+
+    return 0;
+}
+
+Question#6
+
+#include <stdio.h>
+
+int main() {
+    float x1 = 5, y1 = 4, x2 = 3, y2 = 2;
+    float slope;
+
+    // Calculate the slope
+    slope = (y2 - y1) / (x2 - x1);
+
+    // Print the slope with 3 decimal places
+    printf("The slope of the line passing through points (%.2f, %.2f) and (%.2f, %.2f) is %.3f\n", x1, y1, x2, y2, slope);
+
+    return 0;
+}
+
+
