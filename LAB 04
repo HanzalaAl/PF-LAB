@@ -43,4 +43,58 @@ int main() {
     return 0;
 }
 
+Question#4
+
+#include <stdio.h>
+#include <math.h>  // for M_PI constant
+
+int main() {
+    int choice;
+    double radius, length, width, base, height, area;
+
+    do {
+        // Display the menu
+        printf("\nGeometric Calculations Menu:\n");
+        printf("1. Calculate the area of a circle\n");
+        printf("2. Calculate the area of a rectangle\n");
+        printf("3. Calculate the area of a triangle\n");
+        printf("4. Exit\n");
+        printf("Enter your choice (1-4): ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                // Area of a circle: A = πr²
+                printf("Enter the radius of the circle: ");
+                scanf("%lf", &radius);
+                area = M_PI * radius * radius;
+                printf("The area of the circle is: %.2lf\n", area);
+                break;
+            case 2:
+                // Area of a rectangle: A = length * width
+                printf("Enter the length and width of the rectangle: ");
+                scanf("%lf %lf", &length, &width);
+                area = length * width;
+                printf("The area of the rectangle is: %.2lf\n", area);
+                break;
+            case 3:
+                // Area of a triangle: A = 0.5 * base * height
+                printf("Enter the base and height of the triangle: ");
+                scanf("%lf %lf", &base, &height);
+                area = 0.5 * base * height;
+                printf("The area of the triangle is: %.2lf\n", area);
+                break;
+            case 4:
+                // Exit option
+                printf("Exiting the program.\n");
+                break;
+            default:
+                printf("Invalid choice! Please enter a number between 1 and 4.\n");
+        }
+
+    } while (choice != 4);
+
+    return 0;
+}
+
 
