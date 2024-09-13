@@ -97,4 +97,225 @@ int main() {
     return 0;
 }
 
+Question#5
+
+#include <stdio.h>
+
+int main() {
+    char inputUnit, outputUnit;
+    double inputTemp, convertedTemp;
+
+    // Prompt the user to select the input temperature unit
+    printf("Welcome to the AI-powered Temperature Converter!\n");
+    printf("Select the input temperature unit (C for Celsius, F for Fahrenheit, K for Kelvin): ");
+    scanf(" %c", &inputUnit);  // Adding space before %c to ignore any newline character
+
+    // Ask for the temperature value
+    printf("Enter the temperature value: ");
+    scanf("%lf", &inputTemp);
+
+    // Prompt the user to select the unit to convert to
+    printf("Select the unit to convert to (C for Celsius, F for Fahrenheit, K for Kelvin): ");
+    scanf(" %c", &outputUnit);
+
+    // Perform the conversion based on the input and output units
+    if (inputUnit == 'C' || inputUnit == 'c') {
+        if (outputUnit == 'F' || outputUnit == 'f') {
+            // Celsius to Fahrenheit: F = (C * 9/5) + 32
+            convertedTemp = (inputTemp * 9 / 5) + 32;
+            printf("Converted temperature: %.2lf F\n", convertedTemp);
+        } else if (outputUnit == 'K' || outputUnit == 'k') {
+            // Celsius to Kelvin: K = C + 273.15
+            convertedTemp = inputTemp + 273.15;
+            printf("Converted temperature: %.2lf K\n", convertedTemp);
+        } else if (outputUnit == 'C' || outputUnit == 'c') {
+            // No conversion needed
+            convertedTemp = inputTemp;
+            printf("Converted temperature: %.2lf C\n", convertedTemp);
+        } else {
+            printf("Invalid output unit!\n");
+            return 1;
+        }
+    } else if (inputUnit == 'F' || inputUnit == 'f') {
+        if (outputUnit == 'C' || outputUnit == 'c') {
+            // Fahrenheit to Celsius: C = (F - 32) * 5/9
+            convertedTemp = (inputTemp - 32) * 5 / 9;
+            printf("Converted temperature: %.2lf C\n", convertedTemp);
+        } else if (outputUnit == 'K' || outputUnit == 'k') {
+            // Fahrenheit to Kelvin: K = (F - 32) * 5/9 + 273.15
+            convertedTemp = (inputTemp - 32) * 5 / 9 + 273.15;
+            printf("Converted temperature: %.2lf K\n", convertedTemp);
+        } else if (outputUnit == 'F' || outputUnit == 'f') {
+            // No conversion needed
+            convertedTemp = inputTemp;
+            printf("Converted temperature: %.2lf F\n", convertedTemp);
+        } else {
+            printf("Invalid output unit!\n");
+            return 1;
+        }
+    } else if (inputUnit == 'K' || inputUnit == 'k') {
+        if (outputUnit == 'C' || outputUnit == 'c') {
+            // Kelvin to Celsius: C = K - 273.15
+            convertedTemp = inputTemp - 273.15;
+            printf("Converted temperature: %.2lf C\n", convertedTemp);
+        } else if (outputUnit == 'F' || outputUnit == 'f') {
+            // Kelvin to Fahrenheit: F = (K - 273.15) * 9/5 + 32
+            convertedTemp = (inputTemp - 273.15) * 9 / 5 + 32;
+            printf("Converted temperature: %.2lf F\n", convertedTemp);
+        } else if (outputUnit == 'K' || outputUnit == 'k') {
+            // No conversion needed
+            convertedTemp = inputTemp;
+            printf("Converted temperature: %.2lf K\n", convertedTemp);
+        } else {
+            printf("Invalid output unit!\n");
+            return 1;
+        }
+    } else {
+        printf("Invalid input unit!\n");
+        return 1;
+    }
+
+    // Thank you message
+    printf("Thank you for using our AI-powered temperature converter!\n");
+
+    return 0;
+}
+
+Question#6
+
+#include <stdio.h>
+
+int main() {
+    double cost, discount, discountedAmount, savedAmount;
+
+    // Prompt the user for the total cost of items
+    printf("Enter the total cost of shopping: ");
+    scanf("%lf", &cost);
+
+    // Check if the cost is eligible for a discount
+    if (cost < 500) {
+        printf("The minimum amount eligible for a discount is 500.\n");
+        return 1; // Exit the program if not eligible
+    }
+
+    // Determine the discount percentage based on the cost
+    if (cost < 2000) {
+        discount = 0.05; // 5% discount
+    } else if (cost >= 2000 && cost < 4000) {
+        discount = 0.10; // 10% discount
+    } else if (cost >= 4000 && cost < 6000) {
+        discount = 0.20; // 20% discount
+    } else {
+        discount = 0.35; // 35% discount
+    }
+
+    // Calculate the saved amount and the discounted amount
+    savedAmount = cost * discount;
+    discountedAmount = cost - savedAmount;
+
+    // Print the results
+    printf("Actual Amount: %.2lf\n", cost);
+    printf("Saved Amount: %.2lf\n", savedAmount);
+    printf("Amount after Discount: %.2lf\n", discountedAmount);
+
+    return 0;
+}
+
+Question#7
+
+#include <stdio.h>
+
+int main() {
+    int customerID, unitsConsumed;
+    char customerName[100];
+    float amountCharges, surcharge, netAmount;
+
+    printf("Enter Customer ID: ");
+    scanf("%d", &customerID);
+
+    printf("Enter Customer Name: ");
+    scanf("%s", customerName);
+
+    printf("Enter Units Consumed: ");
+    scanf("%d", &unitsConsumed);
+
+    if (unitsConsumed <= 199) {
+        amountCharges = unitsConsumed * 16.20;
+    } else if (unitsConsumed < 300) {
+        amountCharges = 199 * 16.20 + (unitsConsumed - 199) * 20.10;
+    } else if (unitsConsumed < 500) {
+        amountCharges = 199 * 16.20 + 100 * 20.10 + (unitsConsumed - 299) * 27.10;
+    } else {
+        amountCharges = 199 * 16.20 + 100 * 20.10 + 200 * 27.10 + (unitsConsumed - 499) * 35.90;
+    }
+
+    if (amountCharges > 18000) {
+        surcharge = amountCharges * 0.15;
+        netAmount = amountCharges + surcharge;
+    } else {
+        surcharge = 0;
+        netAmount = amountCharges;
+    }
+
+    printf("\nCustomer ID: %d\n", customerID);
+    printf("Customer Name: %s\n", customerName);
+    printf("Units Consumed: %d\n", unitsConsumed);
+    printf("Amount Charges @Rs. %.2f per unit: %.2f\n", 35.90, amountCharges);
+    printf("Surcharge Amount: %.2f\n", surcharge);
+    printf("Net Amount Paid by the Customer: %.2f\n", netAmount);
+
+    return 0;
+}
+
+Question#8
+
+#include <stdio.h>
+
+int main() {
+    int n;
+
+    // Prompt the user for a positive integer
+    printf("Enter a positive integer: ");
+    scanf("%d", &n);
+
+    // Check the range of n and print the corresponding output
+    if (n >= 1 && n <= 9) {
+        switch (n) {
+            case 1:
+                printf("one\n");
+                break;
+            case 2:
+                printf("two\n");
+                break;
+            case 3:
+                printf("three\n");
+                break;
+            case 4:
+                printf("four\n");
+                break;
+            case 5:
+                printf("five\n");
+                break;
+            case 6:
+                printf("six\n");
+                break;
+            case 7:
+                printf("seven\n");
+                break;
+            case 8:
+                printf("eight\n");
+                break;
+            case 9:
+                printf("nine\n");
+                break;
+        }
+    } else if (n > 9) {
+        printf("greater than 9\n");
+    } else {
+        printf("Please enter a positive integer.\n");
+    }
+
+    return 0;
+}
+
 
