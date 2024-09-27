@@ -72,3 +72,90 @@ int main() {
     return 0;
 }
 
+//Question4 : exam grading
+
+#include <stdio.h>
+
+int main() {
+    float attendance, assignmentScore, examScore, finalGrade;
+
+    printf("Enter attendance percentage (0-100): ");
+    scanf("%f", &attendance);
+
+    printf("Enter assignment score (0-100): ");
+    scanf("%f", &assignmentScore);
+
+    printf("Enter exam score (0-100): ");
+    scanf("%f", &examScore);
+
+    if (attendance < 0 || attendance > 100 || 
+        assignmentScore < 0 || assignmentScore > 100 || 
+        examScore < 0 || examScore > 100) {
+        printf("Invalid input! Please enter values between 0 and 100.\n");
+        return 1;
+    }
+
+    if (attendance >= 75) {
+        if (assignmentScore >= 90) {
+            if (examScore >= 90) {
+                finalGrade = 4.0; 
+            } else if (examScore >= 80) {
+                finalGrade = 3.7; 
+            } else if (examScore >= 70) {
+                finalGrade = 3.3; 
+            } else {
+                finalGrade = 3.0; 
+            }
+        } else if (assignmentScore >= 75) {
+            if (examScore >= 90) {
+                finalGrade = 3.7;
+            } else if (examScore >= 80) {
+                finalGrade = 3.3; 
+            } else if (examScore >= 70) {
+                finalGrade = 3.0; 
+            } else {
+                finalGrade = 2.7; 
+            }
+        } else {
+            if (examScore >= 90) {
+                finalGrade = 3.3; 
+            } else if (examScore >= 80) {
+                finalGrade = 3.0; 
+            } else if (examScore >= 70) {
+                finalGrade = 2.7;
+            } else {
+                finalGrade = 2.0; 
+            }
+        }
+    } else {
+        if (assignmentScore < 75 || examScore < 70) {
+            finalGrade = 0.0; 
+        } else {
+            finalGrade = 1.0; 
+        }
+    }
+    
+    printf("Final Grade: ");
+    if (finalGrade == 4.0) {
+        printf("A\n");
+    } else if (finalGrade == 3.7) {
+        printf("A-\n");
+    } else if (finalGrade == 3.3) {
+        printf("B+\n");
+    } else if (finalGrade == 3.0) {
+        printf("B\n");
+    } else if (finalGrade == 2.7) {
+        printf("C+\n");
+    } else if (finalGrade == 2.0) {
+        printf("C\n");
+    } else if (finalGrade == 1.0) {
+        printf("D\n");
+    } else {
+        printf("Fail\n");
+    }
+
+    return 0;
+}
+
+
+
