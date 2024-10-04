@@ -1,4 +1,4 @@
-//Which loop system would be better for user input. Justify your answer by creating a program that takes a value and adds it to a variable and prints it repeatedly until the user enters a zero value.
+//1.Which loop system would be better for user input. Justify your answer by creating a program that takes a value and adds it to a variable and prints it repeatedly until the user enters a zero value.
 
 //we will use do while loop so the program executes atleast once 
 #include <stdio.h>
@@ -17,5 +17,39 @@ int main() {
     }while(num != 0);
     
     printf("%d final total: ",sum);
+    return 0;
+}
+
+//2. Write a program that calculates the sum of all even numbers between two given integers a and b. Use
+a loop to find the sum and print the result.
+
+#include <stdio.h>
+
+int main() {
+    int a, b, sum = 0;
+
+    // Input from the user
+    printf("Enter integer 1: ");
+    scanf("%d", &a);
+    printf("Enter integer 2: ");
+    scanf("%d", &b);
+
+    // Ensure a is the smaller number
+    if (a > b) {
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+
+    // Calculate the sum of even numbers
+    for (int i = a; i <= b; i++) {
+        if (i % 2 == 0) { // Check if the number is even
+            sum += i;
+        }
+    }
+
+    // Print the result
+    printf("The sum of all even numbers between %d and %d is: %d\n", a, b, sum);
+
     return 0;
 }
