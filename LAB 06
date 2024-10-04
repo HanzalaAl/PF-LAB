@@ -53,3 +53,190 @@ int main() {
 
     return 0;
 }
+
+3. You are tasked with developing an ATM PIN validation system. The system should allow a user to enter
+their 4-digit PIN and validate it against a predefined correct PIN (5678). If the user enters the wrong PIN,
+they should be prompted to try again. However, if the user enters the wrong PIN 3 consecutive times,
+the system should block the card and display a message that the card is blocked. The user should no
+longer be able to attempt to enter the PIN after the card is blocked.
+
+#include <stdio.h>
+
+int main() {
+    const int correct_pin = 5678;  // Predefined correct PIN
+    int entered_pin;
+    int attempts = 0;               // Counter for incorrect attempts
+
+    while (attempts < 3) {
+        printf("Enter your 4-digit PIN: ");
+        scanf("%d", &entered_pin);
+
+        if (entered_pin == correct_pin) {
+            printf("Access Granted. Welcome!\n");
+            return 0;  // Exit the program upon successful access
+        } else {
+            attempts++;
+            printf("Incorrect PIN. You have %d attempt(s) left.\n", 3 - attempts);
+        }
+    }
+
+    // If the user reaches 3 incorrect attempts
+    printf("Your card is blocked due to 3 consecutive incorrect PIN attempts.\n");
+    return 0; // End the program
+}
+
+4. You are tasked with developing a Messaging Streak Tracker for a social media app (similar to Snapchat
+streaks). The app tracks how many consecutive days two users send messages to each other.
+• Each day, the user must send a message to their friend to maintain the streak.
+• If the user fails to send a message on any day, the streak is reset to 0.
+• The system should track the streak and update it based on whether the user sent a message that
+day.
+
+#include <stdio.h>
+
+int main() {
+    int streak = 0;           // To track the number of consecutive days
+    char sendMessage;        // User input to check if they sent a message
+
+    printf("Welcome to the Messaging Streak Tracker!\n");
+
+    while (1) {
+        printf("Did you send a message today? (y/n): ");
+        scanf(" %c", &sendMessage); // Space before %c to consume any whitespace
+
+        if (sendMessage == 'y' || sendMessage == 'Y') {
+            streak++; // Increment streak if a message was sent
+            printf("Streak is now: %d day(s)\n", streak);
+        } else if (sendMessage == 'n' || sendMessage == 'N') {
+            streak = 0; // Reset streak if no message was sent
+            printf("Streak reset. Current streak: %d day(s)\n", streak);
+        } else {
+            printf("Invalid input. Please enter 'y' for yes or 'n' for no.\n");
+        }
+
+        // Optionally, ask if the user wants to continue tracking
+        char continueTracking;
+        printf("Do you want to continue tracking? (y/n): ");
+        scanf(" %c", &continueTracking);
+        if (continueTracking == 'n' || continueTracking == 'N') {
+            break; // Exit the loop if the user chooses not to continue
+        }
+    }
+
+    printf("Thank you for using the Messaging Streak Tracker!\n");
+    return 0;
+}
+
+5. Write a program to check whether a given number is prime or not.
+
+#include <stdio.h>
+
+int main() {
+    int num, isPrime = 1; // Assume the number is prime
+
+    // Input from the user
+    printf("Enter a positive integer: ");
+    scanf("%d", &num);
+
+    // Handle numbers less than 2
+    if (num <= 1) {
+        isPrime = 0; // 0 and 1 are not prime numbers
+    } else {
+        // Check for factors from 2 to the square root of num
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0) {
+                isPrime = 0; // Found a factor, so it's not prime
+                break;
+            }
+        }
+    }
+
+    // Output the result
+    if (isPrime) {
+        printf("%d is a prime number.\n", num);
+    } else {
+        printf("%d is not a prime number.\n", num);
+    }
+
+    return 0;
+}
+
+6. Using the above program integrate the number if it is a prime and print the Fibonacci series till that
+number.
+
+#include <stdio.h>
+
+int main() {
+    int num, isPrime = 1; // Assume the number is prime
+
+    // Input from the user
+    printf("Enter a positive integer: ");
+    scanf("%d", &num);
+
+    // Handle numbers less than 2
+    if (num <= 1) {
+        isPrime = 0; // 0 and 1 are not prime numbers
+    } else {
+        // Check for factors from 2 to the square root of num
+        for (int i = 2; i * i <= num; i++) {
+            if (num % i == 0) {
+                isPrime = 0; // Found a factor, so it's not prime
+                break;
+            }
+        }
+    }
+
+    // Output the result
+    if (isPrime) {
+        printf("%d is a prime number.\n", num);
+        
+        // Print Fibonacci series up to num
+        printf("Fibonacci series up to %d: ", num);
+        
+        int a = 0, b = 1;
+        
+        while (a <= num) {
+            printf("%d ", a);
+            int next = a + b; // Calculate the next Fibonacci number
+            a = b;            // Update a to the next number
+            b = next;        // Update b to the next number
+        }
+        printf("\n");
+    } else {
+        printf("%d is not a prime number.\n", num);
+    }
+
+    return 0;
+}
+
+7. Write a program to check whether a number is an Armstrong number or not. An Armstrong number is
+a number that is equal to the sum of cubes of its digits.
+
+#include <stdio.h>
+
+int main() {
+    int num, originalNum, remainder, result = 0;
+
+    // Input from the user
+    printf("Enter a three-digit integer: ");
+    scanf("%d", &num);
+
+    // Store the original number for comparison later
+    originalNum = num;
+
+    // Calculate the sum of the cubes of its digits
+    while (num != 0) {
+        remainder = num % 10;            // Get the last digit
+        result += remainder * remainder * remainder; // Cube and add
+        num /= 10;                       // Remove the last digit
+    }
+
+    // Check if the original number is equal to the result
+    if (originalNum == result) {
+        printf("%d is an Armstrong number.\n", originalNum);
+    } else {
+        printf("%d is not an Armstrong number.\n", originalNum);
+    }
+
+    return 0;
+}
