@@ -1,1 +1,77 @@
+Class Task (linear search)
+
+#include <stdio.h>
+#include <stdbool.h>
+
+int main() {
+    int arr[10] = {0,12,26,37,44,59,69,75,78,99};
+    int n;
+    bool found = false;
+    
+    printf("enter the value you want to search: ");
+    scanf("%d", &n);
+    
+    for (int i =1 ; i<=10; i++){
+        if(arr[i]==n){
+            printf("value found on index %d ", i);
+            found = true;
+        } 
+    }
+    if (found == false){
+        printf("value not found");
+    }
+    
+
+    return 0;
+}
+
+
+1. Write a C Program that takes an user input array and prints the sum of its elements.
+
+#include <stdio.h>
+
+int main() {
+    int i , n , values, sum =0;
+    
+    printf("How many numbers do you want sum:");
+    scanf("%d",&n);
+    int arr[n];
+    
+    for(i=1; i <= n ; i++){
+        printf("enter the numbers: ");
+        scanf("%d", &values);
+        arr[i] = values;
+    }
+    
+    for (int j =1 ; j <= n ; j++){
+        int num;
+        num = arr[j];
+        sum = sum + num;
+    }
+    printf("%d", sum);
+    return 0;
+}
+
+2. Write a program in C to read n number of values in an array and display it in reverse order
+
+#include <stdio.h>
+
+int main() {
+    int i , n , values;
+    
+    printf("enter size of array:");
+    scanf("%d",&n);
+    int arr[n];
+    
+    for(i=1; i <= n ; i++){
+        printf("enter the numbers: ");
+        scanf("%d", &values);
+        arr[i] = values;
+    }
+    
+    for (int j =n ; j>=1 ; j--){
+        printf("%d\n",arr[j]);
+    }
+    return 0;
+}
 
