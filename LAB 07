@@ -1,1 +1,203 @@
+3. You are developing a user input validation system for a registration form. The form requires the
+user to input their name, email, and phone number. Validate the inputs with the following rules:
+Name: Can only contain alphabetic characters (A-Z, a-z), spaces.
+Email: Can contain alphanumeric characters (A-Z, a-z, 0-9), periods (.), underscores (_), hyphens (-
+), and must include an @ symbol.
+Phone Number: Can contain digits (0-9), spaces, hyphens (-), and an optional plus sign (+) at the
+beginning.
+Write a C program that:
+Reads and validates each input.
+Prints an error message for any invalid input, or prints the valid inputs.
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main() {
+    char name[100];
+    char email[100];
+    char phone[100];
+
+    printf("Enter your name: ");
+    fgets(name, sizeof(name), stdin);
+    name[strcspn(name, "\n")] = '\0';
+
+    printf("Enter your email: ");
+    fgets(email, sizeof(email), stdin);
+    email[strcspn(email, "\n")] = '\0';
+
+    printf("Enter your phone number: ");
+    fgets(phone, sizeof(phone), stdin);
+    phone[strcspn(phone, "\n")] = '\0';
+
+    int validName = 1;
+    for (int i = 0; name[i] != '\0'; i++) {
+        if (!isalpha(name[i]) && name[i] != ' ') {
+            validName = 0;
+            break;
+        }
+    }
+
+    int validEmail = 1;
+    int hasAtSymbol = 0;
+    int hasDotAfterAt = 0;
+
+    for (int i = 0; email[i] != '\0'; i++) {
+        char ch = email[i];
+        if (isalnum(ch) || ch == '.' || ch == '_' || ch == '-') {
+            if (ch == '@') {
+                if (hasAtSymbol) {
+                    validEmail = 0;
+                    break;
+                }
+                hasAtSymbol = 1;
+            }
+            if (hasAtSymbol && ch == '.') {
+                hasDotAfterAt = 1;
+            }
+        } else {
+            validEmail = 0;
+            break;
+        }
+    }
+    validEmail = validEmail && hasAtSymbol && hasDotAfterAt;
+
+    int validPhone = 1;
+    if (*phone == '+') phone++;
+    for (int i = 0; phone[i] != '\0'; i++) {
+        char ch = phone[i];
+        if (!isdigit(ch) && ch != ' ' && ch != '-') {
+            validPhone = 0;
+            break;
+        }
+    }
+
+    if (!validName) {
+        printf("Error: Invalid name. Only alphabetic characters and spaces are allowed.\n");
+    } else if (!validEmail) {
+        printf("Error: Invalid email format.\n");
+    } else if (!validPhone) {
+        printf("Error: Invalid phone number. Only digits, spaces, hyphens, and an optional plus sign are allowed.\n");
+    } else {
+        printf("Valid Inputs:\n");
+        printf("Name: %s\n", name);
+        printf("Email: %s\n", email);
+        printf("Phone Number: %s\n", phone);
+    }
+
+    return 0;
+}
+
+4 . Write a C Program to find the minimum and maximum number in an array.
+Input:{4,1,6,8,10,21,8,9,2,6}
+Output:
+Minimum Number = 1
+Maximum Number = 21
+
+#include <stdio.h>
+
+int main() {
+    int arr[] = {4, 1, 6, 8, 10, 21, 8, 9, 2, 6};
+    int size = sizeof(arr) / sizeof(arr[0]);
+    int min = arr[0];
+    int max = arr[0];
+
+    for (int i = 1; i < size; i++) {
+        if (arr[i] < min) {
+            min = arr[i];
+        }
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+    }
+
+    printf("Minimum Number = %d\n", min);
+    printf("Maximum Number = %d\n", max);
+
+    return 0;
+}
+
+5. A weather station records temperature in an array over the course of a week (7 days). Write a program
+that calculates the average temperature of the week and identifies if any days had extreme temperatures
+(above 40°C or below 0°C).
+
+#include <stdio.h>
+
+int main() {
+    int temperatures[7];
+    int sum = 0;
+    int extremeDays[7];
+    int extremeCount = 0;
+
+    printf("Enter temperatures for 7 days:\n");
+    for (int i = 0; i < 7; i++) {
+        printf("Day %d: ", i + 1);
+        scanf("%d", &temperatures[i]);
+        sum += temperatures[i];
+        if (temperatures[i] > 40 || temperatures[i] < 0) {
+            extremeDays[extremeCount] = i + 1;
+            extremeCount++;
+        }
+    }
+
+    float average = sum / 7.0;
+
+    printf("Average temperature: %.1f°C", average);
+    if (extremeCount > 0) {
+        printf(", Extreme temperatures on day");
+        for (int i = 0; i < extremeCount; i++) {
+            printf(" %d", extremeDays[i]);
+            if (i < extremeCount - 1) {
+                printf(" and day");
+            }
+        }
+    }
+    printf(".\n");
+
+    return 0;
+}
+
+6.Given an array arr[] of size N which contains elements from 0 to N-1, you need to find all the
+elements occurring more than once in the given array.
+
+#include <stdio.h>
+
+int main() {
+    int N;
+    printf("Enter the size of the array: ");
+    scanf("%d", &N);
+
+    int arr[N];
+    int frequency[N];
+    for (int i = 0; i < N; i++) {
+        frequency[i] = 0;
+    }
+
+    for (int i = 0; i < N; i++) {
+        printf("Element %d = ", i + 1);
+        scanf("%d", &arr[i]);
+        frequency[arr[i]]++;
+    }
+
+    printf("Numbers that occur more than once: ");
+    int found = 0;
+    for (int i = 0; i < N; i++) {
+        if (frequency[i] > 1) {
+            if (found) {
+                printf(" and ");
+            }
+            printf("%d", i);
+            found = 1;
+        }
+    }
+
+    if (!found) {
+        printf("None");
+    }
+    printf(".\n");
+
+    return 0;
+}
+
+
 
