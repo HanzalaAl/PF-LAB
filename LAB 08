@@ -1,0 +1,310 @@
+1. Create a 3D array representing 2 pages of a 3x3 matrix. Initialize it and find the sum of all the
+elements on each page.
+
+#include <stdio.h>
+
+int main() {
+    int array_3d[2][3][3] = {
+        {
+            {1, 2, 3},
+            {4, 5, 6},
+            {7, 8, 9}
+        },
+        {
+            {9, 8, 7},
+            {6, 5, 4},
+            {3, 2, 1}
+        }
+    };
+
+    for (int page = 0; page < 2; page++) {
+        int sum = 0;
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                sum += array_3d[page][i][j];
+            }
+        }
+        printf("Sum of elements on page %d: %d\n", page + 1, sum);
+    }
+
+    return 0;
+}
+
+1. Write a C program that takes a square matrix as input and prints its diagonal elements.
+
+#include <stdio.h>
+
+int main() {
+    int n;
+
+    printf("Enter the size of the square matrix (n x n): ");
+    scanf("%d", &n);
+
+    int matrix[n][n];
+
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    printf("Diagonal elements:\n");
+    for (int i = 0; i < n; i++) {
+        printf("%d ", matrix[i][i]);
+    }
+    printf("\n");
+
+    return 0;
+}
+
+2. Write a C program that generates a sequence of prime numbers within a given range using
+nested loops.
+
+#include <stdio.h>
+
+int main() {
+    int lower, upper;
+
+    printf("Enter the lower and upper limits of the range: ");
+    scanf("%d %d", &lower, &upper);
+
+    printf("Prime numbers between %d and %d are:\n", lower, upper);
+    
+    for (int num = lower; num <= upper; num++) {
+        if (num < 2) continue;
+
+        int isPrime = 1;
+
+        for (int i = 2; i <= num / 2; i++) {
+            if (num % i == 0) {
+                isPrime = 0;
+                break;
+            }
+        }
+
+        if (isPrime) {
+            printf("%d ", num);
+        }
+    }
+    printf("\n");
+
+    return 0;
+}
+
+3. Generate a pattern of odd numbers in decreasing order starting from a user-specified number
+using nested loops.
+
+#include <stdio.h>
+
+int main() {
+    int n;
+
+    printf("Enter a starting odd number: ");
+    scanf("%d", &n);
+
+    if (n % 2 == 0) {
+        n--;
+    }
+
+    for (int i = n; i > 0; i -= 2) {
+        for (int j = i; j > 0; j -= 2) {
+            printf("%d ", j);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+4. Implement a C program to find the transpose of a given m x n matrix. Print the transposed
+matrix.
+
+#include <stdio.h>
+
+int main() {
+    int m, n;
+
+    printf("Enter the number of rows and columns: ");
+    scanf("%d %d", &m, &n);
+
+    int matrix[m][n], transpose[n][m];
+
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            transpose[j][i] = matrix[i][j];
+        }
+    }
+
+    printf("Transposed matrix:\n");
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            printf("%d ", transpose[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+5. Write a C program to find the saddle point(s) in a given 3x3 matrix. A saddle point is an element
+that is the smallest in its row and the largest in its column.
+
+#include <stdio.h>
+
+int main() {
+    int matrix[3][3];
+
+    printf("Enter the elements of the 3x3 matrix:\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    printf("Saddle point(s):\n");
+    for (int i = 0; i < 3; i++) {
+        int minRow = matrix[i][0];
+        int colIndex = 0;
+
+        for (int j = 1; j < 3; j++) {
+            if (matrix[i][j] < minRow) {
+                minRow = matrix[i][j];
+                colIndex = j;
+            }
+        }
+
+        int isSaddlePoint = 1;
+        for (int k = 0; k < 3; k++) {
+            if (matrix[k][colIndex] > minRow) {
+                isSaddlePoint = 0;
+                break;
+            }
+        }
+
+        if (isSaddlePoint) {
+            printf("Saddle point found at [%d][%d]: %d\n", i, colIndex, minRow);
+        }
+    }
+
+    return 0;
+}
+
+6. Write a C program that finds the maximum element in a given m x n matrix and its position (row,
+column).
+
+#include <stdio.h>
+
+int main() {
+    int m, n;
+
+    printf("Enter the number of rows and columns: ");
+    scanf("%d %d", &m, &n);
+
+    int matrix[m][n];
+
+    printf("Enter the elements of the matrix:\n");
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            scanf("%d", &matrix[i][j]);
+        }
+    }
+
+    int max = matrix[0][0];
+    int maxRow = 0, maxCol = 0;
+
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            if (matrix[i][j] > max) {
+                max = matrix[i][j];
+                maxRow = i;
+                maxCol = j;
+            }
+        }
+    }
+
+    printf("Maximum element: %d at position [%d][%d]\n", max, maxRow, maxCol);
+
+    return 0;
+}
+
+7. Write a C program to multiply two matrices of size 3x3 and display the result matrix.
+#include <stdio.h>
+
+int main() {
+    int matrix1[3][3], matrix2[3][3], result[3][3] = {0};
+
+    printf("Enter elements of the first 3x3 matrix:\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            scanf("%d", &matrix1[i][j]);
+        }
+    }
+
+    printf("Enter elements of the second 3x3 matrix:\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            scanf("%d", &matrix2[i][j]);
+        }
+    }
+
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            for (int k = 0; k < 3; k++) {
+                result[i][j] += matrix1[i][k] * matrix2[k][j];
+            }
+        }
+    }
+
+    printf("Resultant matrix after multiplication:\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%d ", result[i][j]);
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
+8. Write a C program to generate a diamond shape pattern using nested loops. The program
+should take the number of rows for the upper half of the diamond as input from the user.
+
+#include <stdio.h>
+
+int main() {
+    int n;
+
+    printf("Enter the number of rows for the upper half of the diamond: ");
+    scanf("%d", &n);
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = i; j < n; j++) {
+            printf(" ");
+        }
+        for (int j = 1; j <= (2 * i - 1); j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    for (int i = n - 1; i >= 1; i--) {
+        for (int j = n; j > i; j--) {
+            printf(" ");
+        }
+        for (int j = 1; j <= (2 * i - 1); j++) {
+            printf("*");
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
+
